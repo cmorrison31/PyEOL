@@ -1,0 +1,9 @@
+.idea
+.venv
+**__pycache__
+**.egg-info
+Animations/media/
+Tests/**.xml
+*.webm
+*.png
+*dist

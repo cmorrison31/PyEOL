@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools", "numpy"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "TerraFrame"
+version = "0.1.0"
+description = "A library for calculating the orientation of the earth relative to GCRS."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { file = "LICENSE.txt" }
+keywords = ["IAU", "Precession", "Nutation", "Earth", "Astronomy", "IERS",
+    "Transformation", "ITRS", "GCRS"]
+authors = [{ name = "Caleb Morrison", email = "cmorrison8191@gmail.com" }]
+maintainers = [{ name = "Caleb Morrison", email = "cmorrison8191@gmail.com" }]
+
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Science/Research",
+  "Topic :: Scientific/Engineering :: Astronomy",
+  "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3 :: Only",
+]
+
+dependencies = ["numpy", "scipy"]
+
+[project.optional-dependencies]
+dev = ["build", "twine"]
+animation = ["manim"]
+test = ["pytest", "pyerfa", "astropy"]
+
+[project.urls]
+"Source" = "https://github.com/cmorrison31/TerraFrame"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"TerraFrame.Data" = ["*.txt"]
