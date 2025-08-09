@@ -1,3 +1,5 @@
+[![Test](https://github.com/cmorrison31/TerraFrame/actions/workflows/test.yml/badge.svg)](https://github.com/cmorrison31/TerraFrame/actions/workflows/test.yml)
+[![Release](https://github.com/cmorrison31/TerraFrame/actions/workflows/release.yml/badge.svg)](https://github.com/cmorrison31/TerraFrame/actions/workflows/release.yml)
 # TerraFrame
 TerraFrame is a library for calculating the orientation of the earth relative 
 to the Geocentric Celestial Reference System (GCRS). The intended use of 
