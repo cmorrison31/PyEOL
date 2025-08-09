@@ -28,7 +28,7 @@ classifiers = [
 dependencies = ["numpy", "scipy"]
 
 [project.optional-dependencies]
-dev = ["build", "twine"]
+dev = ["build", "twine", "setuptools"]
 animation = ["manim"]
 test = ["pytest", "pyerfa", "astropy"]
 
