@@ -7,3 +7,4 @@ Tests/**.xml
 *.webm
 *.png
 *dist
+*build
