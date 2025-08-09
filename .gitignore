@@ -4,6 +4,7 @@
 **.egg-info
 Animations/media/
 Tests/**.xml
+test-results-*.xml
 *.webm
 *.png
 *dist

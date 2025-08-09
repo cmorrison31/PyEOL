@@ -8,7 +8,8 @@ from typing import Optional
 
 import numpy as np
 import numpy.typing as npt
-from scipy.interpolate import interp1d
+
+from .Interpolation import Interpolation1D
 
 
 class BulletinData:
@@ -73,29 +74,17 @@ class BulletinData:
 
     def _init_interpolants(self):
         if BulletinData.f_pm_x is None:
-            BulletinData.f_pm_x = interp1d(self.data[:, 0], self.data[:, 2],
-                                           fill_value=(self.data[0, 1],
-                                                       self.data[-1, 1]),
-                                           bounds_error=False,
-                                           assume_sorted=True)
+            BulletinData.f_pm_x = Interpolation1D(self.data[:, 0],
+                                                  self.data[:, 2])
 
-            BulletinData.f_pm_y = interp1d(self.data[:, 0], self.data[:, 3],
-                                           fill_value=(self.data[0, 1],
-                                                       self.data[-1, 1]),
-                                           bounds_error=False,
-                                           assume_sorted=True)
+            BulletinData.f_pm_y = Interpolation1D(self.data[:, 0],
+                                                  self.data[:, 3])
 
-            BulletinData.f_nc_dx = interp1d(self.data[:, 0], self.data[:, 4],
-                                            fill_value=(self.data[0, 1],
-                                                        self.data[-1, 1]),
-                                            bounds_error=False,
-                                           assume_sorted=True)
+            BulletinData.f_nc_dx = Interpolation1D(self.data[:, 0],
+                                                   self.data[:, 4])
 
-            BulletinData.f_nc_dy = interp1d(self.data[:, 0], self.data[:, 5],
-                                            fill_value=(self.data[0, 1],
-                                                        self.data[-1, 1]),
-                                            bounds_error=False,
-                                           assume_sorted=True)
+            BulletinData.f_nc_dy = Interpolation1D(self.data[:, 0],
+                                                   self.data[:, 5])
 
     def _parse_file(self):
         # Don't reparse the file data
@@ -104,8 +93,8 @@ class BulletinData:
 
         file_content = []
 
-        with (resources.files("TerraFrame.Data").joinpath(self._file_name).open("r",
-                encoding="utf-8") as f):
+        with (resources.files("TerraFrame.Data").joinpath(self._file_name).open(
+                "r", encoding="utf-8") as f):
             file_content = f.readlines()
 
         data_tmp = []
@@ -152,7 +141,6 @@ class BulletinData:
 
                     # Nutation correction, dy (milliarcseconds)
                     line_data[5] = float(line[116:125])
-
 
                 data_tmp.append(line_data)
 
