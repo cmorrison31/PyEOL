@@ -7,7 +7,7 @@ import numpy as np
 from matplotlib.animation import FuncAnimation
 from mpl_toolkits.mplot3d import Axes3D
 
-from TerraFrame import CelestialTerrestrial
+import TerraFrame
 from TerraFrame.Utilities import TransformationMatrices
 from TerraFrame.Utilities.Time import JulianDate
 
@@ -19,7 +19,7 @@ def get_earth_image_and_coordinates():
     theta = np.linspace(0, np.pi, img.shape[0])
     phi = np.linspace(0, 2 * np.pi, img.shape[1])
 
-    count = 50  # keep 180 points along theta and phi
+    count = 300  # keep 180 points along theta and phi
     theta_inds = np.linspace(0, img.shape[0] - 1, count).round().astype(int)
     phi_inds = np.linspace(0, img.shape[1] - 1, count).round().astype(int)
     theta = theta[theta_inds]
@@ -47,7 +47,7 @@ def main():
 
     base_time = JulianDate.JulianDate.j2000()
 
-    ct = CelestialTerrestrialTransformation.CelestialTerrestrialTransformation()
+    ct = TerraFrame.CelestialTerrestrialTransformation()
 
     for t in times:
         time = base_time + t
@@ -123,7 +123,7 @@ def main():
                               itrs_vecs[0][2, 2], color='b', label='ITRS Z',
                               linestyle='dashed')]
 
-    ax.legend()
+    ax.legend(loc='upper right')
 
     # noinspection PyUnresolvedReferences
     earths = [ax.plot_surface(x.T, y.T, z.T, facecolors=img / 255, cstride=1,
