@@ -18,7 +18,7 @@ built-in options.
 TerraFrame provides robust datetime and timescale conversion functionality that
 is fully leap second aware. Conversions between UTC, UT1, TT, and TAI are
 provided. The user is encouraged to not work in UTC directly to avoid
-leap second ambiguity. Convertion to UTC from TT or TAI can be safely done
+leap second ambiguity. Conversion to UTC from TT or TAI can be safely done
 in post-processing.
 
 ![Animation of CGRS to ITRS Transformation](https://raw.githubusercontent.com/cmorrison31/TerraFrame/main/Animations/GCRS_to_ITRS.gif)
