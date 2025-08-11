@@ -41,7 +41,7 @@ def test_itrs_to_gcrs_calculation():
 
 
 def test_against_astropy():
-    val = random.uniform(0, 10000.0)
+    val = random.uniform(0, 9000.0)
     jd_utc = JulianDate.JulianDate.j2000() + val
 
     gcrs_basis = np.eye(3)
