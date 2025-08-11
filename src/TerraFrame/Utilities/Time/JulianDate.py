@@ -462,19 +462,17 @@ def julian_date_from_pydatetime(dt):
                                      dt.minute, dt.microsecond)
 
 
-def julian_terrestrial_time_to_century(tt):
+def julian_day_datetime_to_century_datetime(jd):
     """
-    This function takes in the terrestrial time (TT) as a Julian Date (JD) and
-    converts it to a Julian Century (JC) using the J2000 epoch.
+    This function takes in a Julian Day (JD) datetime and converts it to a
+    Julian century datetime based on the J2000 epoch.
 
-    :type tt: JulianDate
-    :param tt: Terrestrial time as a JD
+    :type jd: JulianDate
+    :param jd: Datetime as a JD
     :return:
     """
 
-    assert(tt.time_scale == TimeScales.TT)
-
-    t = 1.0 / 36525.0 * (tt - JulianDate.j2000(time_scale=TimeScales.TT))
+    t = 1.0 / 36525.0 * (jd - JulianDate.j2000(time_scale=jd.time_scale))
 
     return t
 

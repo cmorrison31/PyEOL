@@ -52,7 +52,7 @@ class CelestialTerrestrialTransformation:
         jd_ut1 = Conversions.tt_to_ut1(jd_tt)
 
         # Time needs to be in Julian centuries
-        jdc_tt = Time.JulianDate.julian_terrestrial_time_to_century(jd_tt)
+        jdc_tt = Time.JulianDate.julian_day_datetime_to_century_datetime(jd_tt)
 
         # For the given terrestrial time (TT), call the routines to obtain the
         # IAU 2006/2000A X and Y from series. Then calculate "s" which is the
