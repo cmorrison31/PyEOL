@@ -6,7 +6,7 @@ import sys
 
 import numpy as np
 
-from TerraFrame.Utilities import Earth
+import TerraFrame.Earth
 from TerraFrame.Utilities import Time, Conversions
 from TerraFrame.Utilities.Time.JulianDate import JulianDate
 
@@ -241,7 +241,7 @@ def earth_rotation_matrix(time):
 
     assert (time.time_scale == Time.TimeScales.UT1)
 
-    era = Earth.earth_rotation_angle(time)
+    era = TerraFrame.Earth.earth_rotation_angle(time)
 
     r_era = r3(-era)
 
@@ -255,7 +255,7 @@ def itrs_to_tirs(pm_x, pm_y, sp):
     Reference System (TIRS) per IERS Conventions (2010).
 
     pm_x and pm_y are coordinates of polar motion and sp (s') is the
-    the Terrestrial Intermediate Origin (TIO) locator parameter which provides
+    Terrestrial Intermediate Origin (TIO) locator parameter which provides
     the position of the TIO on the equator of the CIP.
 
     :type pm_x: float

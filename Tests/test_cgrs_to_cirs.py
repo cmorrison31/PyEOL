@@ -20,7 +20,7 @@ def test_cirs_to_gcrs_calculation():
     val = random.uniform(0, 100.0)
     jd_tt = (JulianDate.JulianDate.j2000(
         time_scale=JulianDate.TimeScales.TT) + val)
-    jdc_tt = JulianDate.julian_terrestrial_time_to_century(jd_tt)
+    jdc_tt = JulianDate.julian_day_datetime_to_century_datetime(jd_tt)
 
     cip_x = se_cip_x.compute(jdc_tt)
     cip_y = se_cip_y.compute(jdc_tt)

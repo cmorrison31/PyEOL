@@ -27,7 +27,7 @@ def test_cip_calculation():
     for i, val in enumerate(frac):
         jd_tt = (JulianDate.JulianDate.j2000(
             time_scale=JulianDate.TimeScales.TT) + val)
-        jdc_tt = JulianDate.julian_terrestrial_time_to_century(jd_tt)
+        jdc_tt = JulianDate.julian_day_datetime_to_century_datetime(jd_tt)
 
         cip_x[i] = se_cip_x.compute(jdc_tt)
         cip_y[i] = se_cip_y.compute(jdc_tt)

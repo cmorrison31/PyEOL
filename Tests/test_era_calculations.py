@@ -7,7 +7,7 @@ import random
 import erfa
 import numpy as np
 
-from TerraFrame.Utilities import Earth
+import TerraFrame.Earth
 from TerraFrame.Utilities import TransformationMatrices
 from TerraFrame.Utilities.Time import JulianDate
 
@@ -17,7 +17,7 @@ def test_era_angle_calculation():
     jd_ut1 = (JulianDate.JulianDate.j2000(
         time_scale=JulianDate.TimeScales.UT1) + val)
 
-    era = Earth.earth_rotation_angle(jd_ut1)
+    era = TerraFrame.Earth.earth_rotation_angle(jd_ut1)
 
     jd1, jd2 = jd_ut1.integer_part(), jd_ut1.fraction_part()
     era_a = erfa.era00(jd1, jd2)
