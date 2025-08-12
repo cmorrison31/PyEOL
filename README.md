@@ -4,14 +4,14 @@
 # TerraFrame
 
 TerraFrame is a library designed to provide earth-orientation functionally to
-modeling and simulation software by calculating a transformation 
+modeling and simulation software by calculating the transformation 
 tensor between the Geocentric Celestial Reference System (GCRS) and the 
 International Terrestrial Reference System (ITRS). This transformation accounts for 
 precession, nutation, and polar motion using the IAU 2006/2000A 
 precession-nutation theory and IERS data files.  
 
-Additionally, support is provided for converting between geodetic latitude, 
-longitude and height above ellipsoid and geocentric cartesian coordinates or 
+Additionally, support is provided for converting from geodetic latitude, 
+longitude, and height above ellipsoid to geocentric cartesian coordinates or 
 vice versa. The WGS84 spheroid and a simple spherical earth are provided as 
 built-in options.
 
