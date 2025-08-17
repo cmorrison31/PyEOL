@@ -159,6 +159,37 @@ class EarthBase(ABC):
 
         return lat, lon, alt
 
+    @staticmethod
+    def geocentric_lat_lon_radius_from_cartesian(x, y, z):
+        """
+        This function takes in cartesian coordinates and calculates the
+        geocentric latitude, longitude, and radius.
+
+        Note that geodetic latitude is not the same as geocentric latitude
+        (longitude however, is the same). Geocentric latitude is the angle
+        between the position vector from the origin and the equatorial plane.
+        Geodetic latitude is the angle between the normal to the spheroid and
+        the equatorial plane. If you don't know which you want, you want
+        geodetic latitude. If no qualifier is given, 99% of the time latitude
+        means geodetic latitude.
+
+        :param x: Geocentric cartesian x coordinate
+        :type x: float
+        :param y: Geocentric cartesian y coordinate
+        :type y: float
+        :param z: Geocentric cartesian z coordinate
+        :type z: float
+        :return: Geocentric latitude, longitude, radius (distance from
+        geocentric origin)
+        rtype: float, float, float
+        """
+
+        lat = math.atan2(z, math.sqrt(x ** 2 + y ** 2))
+        lon = math.atan2(y, x)
+        radius = math.sqrt(x ** 2 + y ** 2 + z ** 2)
+
+        return lat, lon, radius
+
 
 class SphericalEarth(EarthBase):
     def __init__(self):
