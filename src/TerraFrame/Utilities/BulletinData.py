@@ -8,8 +8,8 @@ from typing import Optional
 import numpy as np
 import numpy.typing as npt
 
-from .Interpolation import Interpolation1D
 from .DataFiles import DataFileManager
+from .Interpolation import Interpolation1D
 
 
 class BulletinData:
@@ -51,12 +51,12 @@ class BulletinData:
     def __init__(self):
         self._file_name = r'finals.all.iau2000.txt'
         self._url = (r'https://datacenter.iers.org/data/latestVersion/'
-                 r'finals.all.iau2000.txt')
+                     r'finals.all.iau2000.txt')
 
-        seconds_in_a_month = 30*24*60*60
+        seconds_in_a_month = 30 * 24 * 60 * 60
 
         self._datafile_manager = DataFileManager(self._file_name, self._url,
-                                  seconds_in_a_month)
+                                                 seconds_in_a_month)
 
         self._parse_file()
 
