@@ -49,6 +49,9 @@ class DataFileManager:
                 directories = PlatformDirs(package_name, author, version)
                 data_dir = directories.user_data_dir
 
+        if not isinstance(data_dir, Path):
+            data_dir = Path(data_dir)
+
         data_dir.mkdir(parents=True, exist_ok=True)
 
         self._logger.debug(f'Using directory "{data_dir}" for URL '
