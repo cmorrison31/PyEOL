@@ -42,6 +42,8 @@ class DataFileManager:
             version = Helpers.get_package_version()
             author = Helpers.get_package_author()
 
+            # If we're in a venv, store in that, otherwise use the OS specific
+            # location
             venv_dir = os.environ.get("VIRTUAL_ENV")
             if venv_dir:
                 data_dir = Path(venv_dir) / "data" / package_name
