@@ -16,6 +16,7 @@ from astropy.utils.iers import IERS_A
 import TerraFrame
 from TerraFrame.Utilities import Conversions
 from TerraFrame.Utilities.Time import JulianDate
+from TerraFrame.Utilities import BulletinData
 
 
 def test_itrs_to_gcrs_calculation():
@@ -55,8 +56,8 @@ def test_against_astropy():
 
     itrs_basis = t_ig @ gcrs_basis
 
-    file_name = "finals.all.iau2000.txt"
-    file_path = resources.files("TerraFrame.Data").joinpath(file_name)
+    bd = BulletinData.BulletinData()
+    file_path = bd.dat_file_path()
 
     with resources.as_file(file_path) as path:
         iers_table = IERS_A.open(str(path))
@@ -85,8 +86,8 @@ def test_leap_second_against_astropy():
     ct = (TerraFrame.CelestialTerrestrialTransformation(user_polar_motion=True,
         user_nutation_corrections=False))
 
-    file_name = "finals.all.iau2000.txt"
-    file_path = resources.files("TerraFrame.Data").joinpath(file_name)
+    bd = BulletinData.BulletinData()
+    file_path = bd.dat_file_path()
 
     with resources.as_file(file_path) as path:
         iers_table = IERS_A.open(str(path))

@@ -3,13 +3,13 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from collections.abc import Callable, Iterable
-from importlib import resources
 from typing import Optional
 
 import numpy as np
 import numpy.typing as npt
 
 from .Interpolation import Interpolation1D
+from .DataFiles import DataFileManager
 
 
 class BulletinData:
@@ -50,6 +50,13 @@ class BulletinData:
 
     def __init__(self):
         self._file_name = r'finals.all.iau2000.txt'
+        self._url = (r'https://datacenter.iers.org/data/latestVersion/'
+                 r'finals.all.iau2000.txt')
+
+        seconds_in_a_month = 30*24*60*60
+
+        self._datafile_manager = DataFileManager(self._file_name, self._url,
+                                  seconds_in_a_month)
 
         self._parse_file()
 
@@ -57,6 +64,9 @@ class BulletinData:
 
     def __len__(self):
         return BulletinData.data[:, 0].shape[0]
+
+    def dat_file_path(self):
+        return self._datafile_manager.file_path
 
     @staticmethod
     def modified_julian_dates(index):
@@ -93,8 +103,9 @@ class BulletinData:
 
         file_content = []
 
-        with (resources.files("TerraFrame.Data").joinpath(self._file_name).open(
-                "r", encoding="utf-8") as f):
+        self._datafile_manager.get_file()
+
+        with open(self._datafile_manager.file_path, 'r', encoding='utf8') as f:
             file_content = f.readlines()
 
         data_tmp = []
